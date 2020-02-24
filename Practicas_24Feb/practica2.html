@@ -16,8 +16,8 @@
 
         #boton {
             color: white;
-            background-color: #ff0000;
-            font-size: 30px;
+            background-color: #FC3385;
+            font-size: 25px;
         }
 
     </style>
@@ -29,9 +29,10 @@
 
     <button id="boton" onclick="obtieneDatos()">Obtiene datos del navegador</button>
     <p class="datos"></p>
-    <p class="parrafos">Este es un parrafo 2</p>
+    <p class="parrafos">Este es un parrafo</p>
 
     <ul id="navegador">
+        <li></li>
         <li></li>
         <li></li>
         <li></li>
@@ -42,10 +43,10 @@
         var datos = document.getElementsByTagName("li");
 
         function obtieneDatos() {
-            console.log("Nombre del navegador: " + navigator.appCodeName);
-            console.log("Versión del navegador: " + navigator.appVersion);
-            console.log("Estatus de internet: " + navigator.onLine);
-            console.log("Nombre del navegador: " + navigator.platform);
+            datos[0].innerHTML = "Nombre del navegador: " + navigator.appCodeName;
+            datos[1].innerHTML = "Versión del navegador: " + navigator.appVersion;
+            datos[2].innerHTML = "Estatus de internet: " + navigator.onLine;
+            datos[3].innerHTML = "Nombre del navegador: " + navigator.platform;
         }
     </script>
 
