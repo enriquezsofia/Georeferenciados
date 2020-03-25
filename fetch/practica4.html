@@ -96,12 +96,11 @@
                                         });
 
                                         if (registro.country == marcador.CountryName) {
-                                            let marker = new MarkerWithLabel({
+                                            let marker = new google.maps.Marker({
                                                 map: map,
                                                 position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
                                                 title: marcador.CountryName + registro.cases,
-                                                labelContent: '<i class="fas fa-virus" style="color:#EC3636;"></i>',
-                                                labelAnchor: new google.maps.Point(22, 50)
+                                                content: '<i class="fas fa-virus" style="color:#EC3636;"></i>'
                                             });
 
                                             marker.addListener('click', function () {
