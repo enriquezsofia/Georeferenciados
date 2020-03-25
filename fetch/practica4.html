@@ -81,7 +81,15 @@
                                 //console.log(respuesta);
                                 respuesta.json().then(function (datospaises){
                                     datospaises.forEach( registro => {
-                                        var información = "<strong>País:</strong> " + registro.country + "<br><strong>Casos:</strong> " + registro.cases + "<br><strong>Nuevos hoy:</strong> " + registro.todayCases + "<br><strong>Muertes:</strong> " + registro.deaths + "<br><strong>Muertes Hoy:</strong> " + registro.todayDeaths + "<br><strong>Recuperados:</strong> " + registro.recovered + "<br><strong>Activos:</strong> " + registro.active + "<br><strong>Críticos:</strong> " + registro.critical + "<br><strong>Casos por millón:</strong> " + registro.casesPerOneMillion;
+                                        var información = "<strong>País:</strong> " + registro.country + 
+                                        "<br><strong>Casos:</strong> " + registro.cases + 
+                                        "<br><strong>Nuevos hoy:</strong> " + registro.todayCases + 
+                                        "<br><strong>Muertes:</strong> " + registro.deaths + 
+                                        "<br><strong>Muertes Hoy:</strong> " + registro.todayDeaths + 
+                                        "<br><strong>Recuperados:</strong> " + registro.recovered + 
+                                        "<br><strong>Activos:</strong> " + registro.active + 
+                                        "<br><strong>Críticos:</strong> " + registro.critical + 
+                                        "<br><strong>Casos por millón:</strong> " + registro.casesPerOneMillion;
 
                                         var infowindow = new google.maps.InfoWindow({
                                             content: información
@@ -91,7 +99,8 @@
                                             let marker = new google.maps.Marker({
                                                 map: map,
                                                 position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
-                                                title: marcador.CountryName + registro.cases
+                                                title: marcador.CountryName + registro.cases,
+                                                labelContent: '<i class="fas fa-virus" style="color:#EC3636;"></i>'
                                             });
 
                                             marker.addListener('click', function () {
@@ -126,6 +135,8 @@
         crossorigin="anonymous"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=initMap"
         async defer></script>
+    <script src="https://kit.fontawesome.com/725910d27b.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
