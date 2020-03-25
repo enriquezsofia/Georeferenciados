@@ -100,7 +100,12 @@
                                                 map: map,
                                                 position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
                                                 title: marcador.CountryName + registro.cases,
-                                                content: '<i class="fas fa-virus" style="color:#EC3636;"></i>'
+                                                label: {
+                                                    fontFamily: 'Fontawesome',
+                                                    fontSize: '30px',
+                                                    text: '\uf974',
+                                                    color: 'white',
+                                                },
                                             });
 
                                             marker.addListener('click', function () {
