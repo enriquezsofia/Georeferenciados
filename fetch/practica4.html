@@ -79,26 +79,33 @@
                             fetch('https://corona.lmao.ninja/countries')
                             .then(function(respuesta){
                                 console.log(respuesta);
-                                // respuesta.json().then(function (datospaises){
-                                //     datospaises.forEach( registro => {
-                                //         var infoWindow = new google.maps.InfoWindow({
-                                //             content: registro.cases
-                                //         });
+                                respuesta.json().then(function (datospaises){
+                                    datospaises.forEach( registro => {
+                                        var infoWindow = new google.maps.InfoWindow({
+                                            content: registro.cases
+                                        });
 
-                                //         if(registro.country == marcador.CountryName){
-                                //             let marker = new google.maps.Marker({
-                                //                 map: map,
-                                //                 position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
-                                //                 title: marcador.CountryName + '  ' + registro.cases
-                                //             });
+                                        if (registro.country == marcador.CountryName) {
+                                            var información = "<strong>País:</strong> " + registro.country + "<br><strong>Casos:</strong> " + registro.cases + "<br><strong>Nuevos hoy:</strong> " + registro.todayCases + "<br><strong>Muertes:</strong> " + registro.deaths + "<br><strong>Muertes Hoy:</strong> " + registro.todayDeaths + "<br><strong>Recuperados:</strong> " + registro.recovered + "<br><strong>Activos:</strong> " + registro.active + "<br><strong>Críticos:</strong> " + registro.critical + "<br><strong>Casos por millón:</strong> " + registro.casesPerOneMillion;
 
-                                //             marker.addListener('click', function(){
-                                //                 infoWindow.open(map,marker);
-                                //             });
-                                //         }
+                                            var infowindow = new google.maps.InfoWindow({
+                                                content: información
+                                            });
 
-                                //     });
-                                // });
+                                            let marker = new google.maps.Marker({
+                                                map: map,
+                                                position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
+                                                title: marcador.CountryName + registro.cases
+                                            });
+
+                                            marker.addListener('click', function () {
+                                                infowindow.open(map, marker);
+                                            });
+
+                                        }
+
+                                    });
+                                });
 
                             });
                         });
