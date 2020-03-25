@@ -72,36 +72,36 @@
             fetch('paises.json')
                 .then(function (response) {
                     response.json().then(function (datos) {
-                        //console.log(datos);
+                        console.log(datos);
                         const map = new google.maps.Map(document.getElementById('mapa'), propiedades);
 
-                        datos.forEach( marcador => {
-                            fetch('https://corona.lmao.ninja/countries')
-                            .then(function(respuesta){
+                        // datos.forEach( marcador => {
+                        //     fetch('https://corona.lmao.ninja/countries')
+                        //     .then(function(respuesta){
 
-                                respuesta.json().then(function (datospaises){
-                                    datospaises.forEach( registro => {
-                                        var infoWindow = new google.maps.InfoWindow({
-                                            content: registro.cases
-                                        });
+                        //         respuesta.json().then(function (datospaises){
+                        //             datospaises.forEach( registro => {
+                        //                 var infoWindow = new google.maps.InfoWindow({
+                        //                     content: registro.cases
+                        //                 });
 
-                                        if(registro.country == marcador.CountryName){
-                                            let marker = new google.maps.Marker({
-                                                map: map,
-                                                position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
-                                                title: marcador.CountryName + '  ' + registro.cases
-                                            });
+                        //                 if(registro.country == marcador.CountryName){
+                        //                     let marker = new google.maps.Marker({
+                        //                         map: map,
+                        //                         position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
+                        //                         title: marcador.CountryName + '  ' + registro.cases
+                        //                     });
 
-                                            marker.addListener('click', function(){
-                                                infoWindow.open(map,marker);
-                                            });
-                                        }
+                        //                     marker.addListener('click', function(){
+                        //                         infoWindow.open(map,marker);
+                        //                     });
+                        //                 }
 
-                                    });
-                                });
+                        //             });
+                        //         });
 
-                            });
-                        });
+                        //     });
+                        // });
 
                     });
                 })
