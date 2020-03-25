@@ -5,10 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fetch 2</title>
+    <title>Fetch 3</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
+
+    <style>
+        #mapa {
+            height: 100%;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,43 +51,55 @@
         </div>
     </nav>
 
-    <div class="container" id="paises">
-        <div class="row">
-            <div class="col">
+    <div id="mapa"></div>
 
-            </div>
-        </div>
-    </div>
-    
-    
+
     <script>
+        var coordenadas = {
+            lat: 0,
+            lng: 0
+        };
 
-        var paises = document.getElementById("paises");
+        var propiedades = {
+            center: coordenadas,
+            zoom: 2
+        };
 
-        fetch('https://corona.lmao.ninja/countries').then(function(response){
-            response.json().then(function(datos){
+        function obtenerMarcadores() {
+            const markers = [
+                {
+                    name: "Mexico",
+                    longitude: "-99.1276",
+                    latitude: "19.427"
+                }, {
+                    name: "Brazil",
+                    longitude: "-47.9292",
+                    latitude: "-15.7801"
+                }, {
+                    name: "Spain",
+                    longitude: "-3.70327",
+                    latitude: "40.4167"
+                }
+            ];
 
-                datos.forEach( registro => {
-                    console.log(registro.country);
-                    let renglon = document.createElement("div");
-                    renglon.className = "row border bg-light";
-                    paises.appendChild(renglon);
+            return markers;
+        };
 
-                    let columna = document.createElement("div");
-                    columna.className = "col-12";
-                    renglon.appendChild(columna);
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById('mapa'), propiedades);
 
-                    let nombre = document.createElement("p");
-                    nombre.textContent = "Pais: " + registro.country + ", casos: " + registro.cases;
-                    columna.appendChild(nombre);
-                });
+            const marcadores = obtenerMarcadores();
+            //console.log(marcadores);
 
-            });
-        })
-        .catch(function(error){
-            console.log('Hubo un problema con la petición Fetch: ' + error.message);
-        });
-        
+            for (marcador of marcadores) {
+                let marker = new google.maps.Marker({
+                    map: map,
+                    position: new google.maps.LatLng(marcador.latitude, marcador.longitude),
+                    title: marcador.name
+                })
+            }
+        }
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -88,6 +111,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=initMap"
+        async defer></script>
 </body>
 
 </html>
