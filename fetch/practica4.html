@@ -67,41 +67,49 @@
         };
 
 
-        function obtenerMarcadores() {
-            const markers = [
-                {
-                    name: "Mexico",
-                    longitude: "-99.1276",
-                    latitude: "19.427"
-                }, {
-                    name: "Brazil",
-                    longitude: "-47.9292",
-                    latitude: "-15.7801"
-                }, {
-                    name: "Spain",
-                    longitude: "-3.70327",
-                    latitude: "40.4167"
-                }
-            ];
-
-            return markers;
-        };
-
         function initMap() {
-            const map = new google.maps.Map(document.getElementById('mapa'), propiedades);
 
-            const marcadores = obtenerMarcadores();
-            //console.log(marcadores);
+            fetch('paises.json')
+                .then(function (response) {
+                    response.json().then(function (datos) {
+                        //console.log(datos);
+                        const map = new google.maps.Map(document.getElementById('mapa'), propiedades);
 
-            for (marcador of marcadores) {
-                let marker = new google.maps.Marker({
-                    map: map,
-                    position: new google.maps.LatLng(marcador.latitude, marcador.longitude),
-                    title: marcador.name
+                        datos.forEach( marcador => {
+                            fetch('https://corona.lmao.ninja/countries')
+                            .then(function(respuesta){
+
+                                respuesta.json().then(function (datospaises){
+                                    datospaises.forEach( registro => {
+                                        var infoWindow = new google.maps.InfoWindow({
+                                            content: registro.cases
+                                        });
+
+                                        if(registro.country == marcador.CountryName){
+                                            let marker = new google.maps.Marker({
+                                                map: map,
+                                                position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
+                                                title: marcador.CountryName + '  ' + registro.cases
+                                            });
+
+                                            marker.addListener('click', function(){
+                                                infoWindow.open(map,marker);
+                                            });
+                                        }
+
+                                    });
+                                });
+
+                            });
+                        });
+
+                    });
                 })
-            }
+                .catch(function (error) {
+                    console.log('Hubo un problema con la petición Fetch: ' + error.message);
+                });
         }
-        
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
