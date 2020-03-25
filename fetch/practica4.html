@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fetch 3</title>
+    <title>Fetch 4</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -72,36 +72,36 @@
             fetch('paises.json')
                 .then(function (response) {
                     response.json().then(function (datos) {
-                        console.log(datos);
+                        //console.log(datos);
                         const map = new google.maps.Map(document.getElementById('mapa'), propiedades);
 
-                        // datos.forEach( marcador => {
-                        //     fetch('https://corona.lmao.ninja/countries')
-                        //     .then(function(respuesta){
+                        datos.forEach( marcador => {
+                            fetch('https://corona.lmao.ninja/countries')
+                            .then(function(respuesta){
+                                console.log(respuesta);
+                                // respuesta.json().then(function (datospaises){
+                                //     datospaises.forEach( registro => {
+                                //         var infoWindow = new google.maps.InfoWindow({
+                                //             content: registro.cases
+                                //         });
 
-                        //         respuesta.json().then(function (datospaises){
-                        //             datospaises.forEach( registro => {
-                        //                 var infoWindow = new google.maps.InfoWindow({
-                        //                     content: registro.cases
-                        //                 });
+                                //         if(registro.country == marcador.CountryName){
+                                //             let marker = new google.maps.Marker({
+                                //                 map: map,
+                                //                 position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
+                                //                 title: marcador.CountryName + '  ' + registro.cases
+                                //             });
 
-                        //                 if(registro.country == marcador.CountryName){
-                        //                     let marker = new google.maps.Marker({
-                        //                         map: map,
-                        //                         position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
-                        //                         title: marcador.CountryName + '  ' + registro.cases
-                        //                     });
+                                //             marker.addListener('click', function(){
+                                //                 infoWindow.open(map,marker);
+                                //             });
+                                //         }
 
-                        //                     marker.addListener('click', function(){
-                        //                         infoWindow.open(map,marker);
-                        //                     });
-                        //                 }
+                                //     });
+                                // });
 
-                        //             });
-                        //         });
-
-                        //     });
-                        // });
+                            });
+                        });
 
                     });
                 })
