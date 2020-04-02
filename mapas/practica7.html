@@ -71,7 +71,7 @@
                     <button class="btn btn-primary" id="btnroadmap">Roadmap</button>
                     <button class="btn btn-warning" id="btnsatellite">Satellite</button>
                     <button class="btn btn-danger" id="btnhybrid">Hybrid</button>
-                    <button class="btn btn-success" id="btnterrainn">Terrain</button>
+                    <button class="btn btn-success" id="btnterrain">Terrain</button>
                 </div>
             </div>
         </div>
@@ -79,12 +79,7 @@
 
 
     <script>
-  var coordenadas = {
-                    lat: -31.563910, lng: 147.154312
-            }
-
-
-        var localidades = [
+         var localidades = [
             {lat: -31.563910, lng: 147.154312},
             {lat: -33.718234, lng: 150.363181},
             {lat: -33.727111, lng: 150.371124},
@@ -116,7 +111,7 @@
             var map = new google.maps.Map(
             document.getElementById('map'),
                 {
-                    center: coordenadas,
+                    center: {lat: -28.024, lng: 140.887},
                     zoom: 3
                 }
             );
