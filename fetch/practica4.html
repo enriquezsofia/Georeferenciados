@@ -76,7 +76,7 @@
                         const map = new google.maps.Map(document.getElementById('mapa'), propiedades);
 
                         datos.forEach( marcador => {
-                            fetch('https://corona.lmao.ninja/countries')
+                            fetch('https://corona.lmao.ninja/v2/countries')
                             .then(function(respuesta){
                                 //console.log(respuesta);
                                 respuesta.json().then(function (datospaises){

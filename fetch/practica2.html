@@ -53,7 +53,7 @@
 
         var paises = document.getElementById("paises");
 
-        fetch('https://corona.lmao.ninja/countries').then(function(response){
+        fetch('https://corona.lmao.ninja/v2/countries').then(function(response){
             response.json().then(function(datos){
 
                 datos.forEach( registro => {
