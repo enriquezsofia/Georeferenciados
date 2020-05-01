@@ -86,5 +86,19 @@ entrarGoogle = () => {
         var token = result.credential.accessToken;
 
         console.log(token);
+        var user = result.user;
+
+        let html = `
+            <p>Nombre: ${ user.displayName }</p>
+            <p>Correo: ${ user.email }</p>
+            <img src="${ user.photoURL }">
+        `;
+
+        datosMiCuenta.innerHTML= html;
+        $('#modalIngresar').modal('hide');
+        formaIngresar.reset();
+        formaIngresar.querySelector('.error').innerHTML = '';
+    }).catch( function(error){
+        console.log(error);
     });
 }
