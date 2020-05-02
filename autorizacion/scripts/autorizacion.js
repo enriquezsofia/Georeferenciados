@@ -103,10 +103,10 @@ entrarGoogle = () => {
     });
 }
 
-entrarGithub = () => {
-    var provider = new firebase.auth.GithubAuthProvider();
-    firebase.auth().signInWithPopup(provider).then( function(result) {
-        var token = result.credential.accessToken;
+entrarFacebook = () => {
+    var provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        var token = result.credential.accessToken;;
 
         console.log(token);
         var user = result.user;
