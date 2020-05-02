@@ -1,3 +1,44 @@
 .logged-in, .logged-out {
     display: none;
 }
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+.bg {
+    background-image: url("https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80");
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.caption {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #000;
+}
+
+h1 span {
+    background-color: rgba(0, 0, 0, 0.336);
+    color: #fff;
+    padding: 18px;
+    letter-spacing: 10px;
+    width: auto;
+    display: inline-block;
+}
+
+.caption span{
+    background-color: rgba(0, 0, 0, 0.336);
+    color: white;
+    letter-spacing: 7px;
+    padding: 5px;
+}

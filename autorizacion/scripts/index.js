@@ -2,6 +2,7 @@ const listaLoggedOut = document.querySelectorAll('.logged-out');
 const listaLoggedIn = document.querySelectorAll('.logged-in');
 const datosMiCuenta = document.querySelector('.datosMiCuenta');
 const listaPlatillos = document.getElementById('listaplatillos');
+const background = document.querySelector('.bg');
 
 
 const configurarMenu = (user) => {
@@ -45,8 +46,10 @@ const obtienePlatillos = (data) => {
         });
 
         listaPlatillos.innerHTML = html;
+        background.style.display = 'none';
     } else {
-        listaPlatillos.innerHTML = '<p class="text-center">Ingrese con sus claves para ver los platillos disponibles.</p>'
+        background.style.display = 'block';
+        listaPlatillos.innerHTML = '';
     }
 };
 

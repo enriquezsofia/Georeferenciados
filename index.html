@@ -17,7 +17,7 @@
         }
 
         .bg {
-            background-image: url("https://images.unsplash.com/photo-1541140530491-72014d42db95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80");
+            background-image: url("https://source.unsplash.com/1600x900/?marmol,pink");
             height: 100%;
 
             background-position: center;
@@ -34,8 +34,8 @@
             color: #000;
         }
 
-        .caption h1.border {
-            background-color: #C47648;
+        .caption h1 span {
+            background-color: rgb(255, 142, 185);
             color: #fff;
             padding: 18px;
             letter-spacing: 10px;
@@ -45,7 +45,7 @@
 
         .p1-image {
             background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-                url("https://images.unsplash.com/photo-1541140767615-9a178a08a5a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80");
+                url("https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80");
             height: 50%;
             background-position: center;
             background-repeat: no-repeat;
@@ -55,7 +55,7 @@
 
         .p2-image {
             background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-                url("https://images.unsplash.com/photo-1535620647-f9e6ca09cfd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80");
+                url("https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80");
             height: 50%;
             background-position: center;
             background-repeat: no-repeat;
@@ -65,7 +65,7 @@
 
         .p3-image {
             background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-                url("https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80");
+                url("https://images.unsplash.com/photo-1568316031054-57c7d4c15981?ixlib=rb-1.2.1&auto=format&fit=crop&w=1300&q=80");
             height: 50%;
             background-position: center;
             background-repeat: no-repeat;
@@ -104,13 +104,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#p1">Parcial 1</a>
+                        <a class="nav-link" href="#mapas">Mapas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#p2">Parcial 2</a>
+                        <a class="nav-link" href="#firebase">Firebase</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#p3">Parcial 3</a>
+                        <a class="nav-link" href="#fetch">Fetch</a>
                     </li>
                 </ul>
             </div>
@@ -119,19 +119,20 @@
 
     <div class="bg">
         <div class="caption">
-            <h1 class="border font-weight-light">SOFIA DENISSE</h1>
+            <h1 class="font-weight-light"><span>SOFIA DENISSE</span></h1>
         </div>
     </div>
 
-    <div class="p1-image" id="p1">
+    <!-- MAPAS -->
+    <div class="p1-image" id="mapas">
         <div class="hero-text">
-            <h2 class="font-weight-light">Parcial 1</h2>
+            <h2 class="font-weight-light">Mapas</h2>
         </div>
     </div>
 
     <div class="container">
         <div>
-            <h3 class="font-weight-light m-4">Mapas</h3>
+            <h3 class="font-weight-light m-4">Prácticas de Mapas</h3>
             <table class="table table-bordered table-sm table-hover m-4">
                 <thead>
                     <tr>
@@ -184,9 +185,18 @@
                 </tbody>
             </table>
         </div>
+    </div>
 
-        <div>
-            <h3 class="font-weight-light m-4">Firebase</h3>
+    <!-- FIREBASE -->
+    <div class="p2-image" id="firebase">
+        <div class="hero-text">
+            <h2 class="font-weight-light">Firebase</h2>
+        </div>
+    </div>
+
+    <div class="container">
+         <div>
+            <h3 class="font-weight-light m-4">Prácticas de Firebase</h3>
             <table class="table table-bordered table-sm table-hover m-4">
                 <thead>
                     <tr>
@@ -206,12 +216,26 @@
                         <td>Práctica 2</td>
                         <td><a href="Firebase/practica2.html">Implementación de Editar</a></td>
                     </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Práctica 3</td>
+                        <td><a href="autorizacion/index.html">Uso de autenticación con Firestore</a></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
+    </div>
 
+    <!-- FETCH -->
+    <div class="p3-image" id="fetch">
+        <div class="hero-text">
+            <h2 class="font-weight-light">Fetch</h2>
+        </div>
+    </div>
+
+    <div class="container">
         <div>
-            <h3 class="font-weight-light m-4">Fetch</h3>
+            <h3 class="font-weight-light m-4">Prácticas de Fetch</h3>
             <table class="table table-bordered table-sm table-hover m-4">
                 <thead>
                     <tr>
@@ -243,18 +267,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-
-    <div class="p2-image" id="p2">
-        <div class="hero-text">
-            <h2 class="font-weight-light">Parcial 2</h2>
-        </div>
-    </div>
-
-    <div class="p3-image" id="p3">
-        <div class="hero-text">
-            <h2 class="font-weight-light">Parcial 3</h2>
         </div>
     </div>
 
