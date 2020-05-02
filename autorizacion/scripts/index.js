@@ -29,7 +29,7 @@ const obtienePlatillos = (data) => {
         data.forEach(doc => {
             const platillo = doc.data();
             const columna = `
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4 mt-4">
                 <div class="card">
                     <img class="card-img-top" src="images/${ platillo.imagen }">
                     <div class="card-body">
