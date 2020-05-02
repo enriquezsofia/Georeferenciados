@@ -91,7 +91,7 @@ entrarGoogle = () => {
         let html = `
             <p>Nombre: ${ user.displayName }</p>
             <p>Correo: ${ user.email }</p>
-            <img src="${ user.photoURL }">
+            <img src="${ user.photoURL }" width="100%">
         `;
 
         datosMiCuenta.innerHTML= html;
