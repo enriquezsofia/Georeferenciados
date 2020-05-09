@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creando estilos de Mapas de Google</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">Georeferenciados</span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#mapas">Mapas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#firebase">Firebase</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#fetch">Fetch</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+
+            var styleMapType = new google.maps.StyledMapType([
+                {
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#1d2c4d"
+                        }
+                    ]
+                },
+                {
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#8ec3b9"
+                        }
+                    ]
+                },
+                {
+                    elementType: "labels.text.stroke",
+                    stylers: [
+                        {
+                            color: "#1a3646"
+                        }
+                    ]
+                },
+                {
+                    featureType: "administrative.country",
+                    elementType: "geometry.stroke",
+                    stylers: [
+                        {
+                            color: "#4b6878"
+                        }
+                    ]
+                },
+                {
+                    featureType: "administrative.land_parcel",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#64779e"
+                        }
+                    ]
+                },
+                {
+                    featureType: "administrative.province",
+                    elementType: "geometry.stroke",
+                    stylers: [
+                        {
+                            color: "#4b6878"
+                        }
+                    ]
+                },
+                {
+                    featureType: "landscape.man_made",
+                    elementType: "geometry.stroke",
+                    stylers: [
+                        {
+                            color: "#334e87"
+                        }
+                    ]
+                },
+                {
+                    featureType: "landscape.natural",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#023e58"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#283d6a"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#6f9ba5"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "labels.text.stroke",
+                    stylers: [
+                        {
+                            color: "#1d2c4d"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi.park",
+                    elementType: "geometry.fill",
+                    stylers: [
+                        {
+                            color: "#023e58"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi.park",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#3C7680"
+                        }
+                    ]
+                },
+                {
+                    featureType: "poi.school",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#ff40ff"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#304a7d"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#98a5be"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road",
+                    elementType: "labels.text.stroke",
+                    stylers: [
+                        {
+                            color: "#1d2c4d"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#2c6675"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.stroke",
+                    stylers: [
+                        {
+                            color: "#255763"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#b0d5ce"
+                        }
+                    ]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "labels.text.stroke",
+                    stylers: [
+                        {
+                            color: "#023e58"
+                        }
+                    ]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#98a5be"
+                        }
+                    ]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "labels.text.stroke",
+                    stylers: [
+                        {
+                            color: "#1d2c4d"
+                        }
+                    ]
+                },
+                {
+                    featureType: "transit.line",
+                    elementType: "geometry.fill",
+                    stylers: [
+                        {
+                            color: "#283d6a"
+                        }
+                    ]
+                },
+                {
+                    featureType: "transit.station",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#3a4762"
+                        }
+                    ]
+                },
+                {
+                    featureType: "water",
+                    elementType: "geometry",
+                    stylers: [
+                        {
+                            color: "#0e1626"
+                        }
+                    ]
+                },
+                {
+                    featureType: "water",
+                    elementType: "labels.text.fill",
+                    stylers: [
+                        {
+                            color: "#4e6d70"
+                        }
+                    ]
+                }
+
+            ], { name: 'Dark Map' });
+
+            var propiedades = {
+                center: {
+                    lat: 21.152639, lng: -101.711598
+                },
+                zoom: 14,
+                mapTypeControlOptions: {
+                    mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'style_map']
+                }
+            };
+
+            var mapa = document.getElementById("map");
+            var map = new google.maps.Map(mapa, propiedades);
+            map.mapTypes.set('style_map', styleMapType);
+            map.setMapTypeId('style_map');
+
+        }
+
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=initMap"
+        async defer></script>
+
+</body>
+
+</html>
