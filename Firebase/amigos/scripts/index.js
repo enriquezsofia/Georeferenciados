@@ -18,9 +18,13 @@ const configurarMenu = (user) => {
         });
         listaLoggedIn.forEach( item => item.style.display = 'block');
         listaLoggedOut.forEach( item => item.style.display = 'none');
+        background.style.display = 'block';
+
     }else {
+        datosMiCuenta.innerHTML = '';
         listaLoggedIn.forEach( item => item.style.display = 'none');
         listaLoggedOut.forEach( item => item.style.display = 'block');
+        background.style.display = 'none';
     }
 };
 
