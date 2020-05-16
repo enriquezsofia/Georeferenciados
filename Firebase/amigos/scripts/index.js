@@ -27,6 +27,8 @@ const configurarMenu = (user) => {
 };
 
 const obtieneAmigos = (data) => {
+    background.style.display = 'block';
+
     var map = new google.maps.Map(document.getElementById("map"), 
     { center: { lat: 48.8722344, lng: 2.7758079 }, zoom: 14 });
 
