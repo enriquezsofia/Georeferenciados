@@ -75,14 +75,15 @@
 
         function initMap() {
             var propiedades = {
-                center: {
-                    lat: 21.152639,
-                    lng: -101.711598
+                center: { 
+                     lat: 21.152639, lng:  -101.711598
                 },
                 zoom: 12
+                
             };
 
-            var map = new google.maps.Map(document.getElementById("map"), propiedades);
+            var mapa = document.getElementById("map");
+            var map = new google.maps.Map(mapa, propiedades);
 
             var icono = {
                 url: "https://www.mountcarmelliving.com/wp-content/uploads/2016/07/map-marker.gif",
