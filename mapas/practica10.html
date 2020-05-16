@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Watch</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        #map {
+            width: 100%;
+            height: 340;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">Georeferenciados</span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#mapas">Mapas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#firebase">Firebase</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#fetch">Fetch</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container text-center small">
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-sm btn-primary" id="boton">Watch Position</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-sm btn-danger" id="botondetener">Detener Watch</button>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col-12" id="datos"></div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+
+        function initMap() {
+            var propiedades = {
+                center: {
+                    lat: 21.152639,
+                    lng: -101.711598
+                },
+                zoom: 12
+            };
+
+            var map = new google.maps.Map(document.getElementById("map"), propiedades);
+
+            var icono = {
+                url: "https://www.mountcarmelliving.com/wp-content/uploads/2016/07/map-marker.gif",
+                scaledSize: new google.maps.Size(25, 25),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 0)
+            };
+
+            var marker = new google.maps.Marker({
+                position: { lat: 0, lng: 0 },
+                icon: icono,
+                map: map
+            });
+
+            var watchId = null;
+
+            const boton = document.getElementById('boton');
+
+            var positionOptions = {
+                enableHighAccuracy: true,
+                timeout: 10 * 1000,  //10 segundos
+                maximumAge: 30 * 1000  //30 segundos
+            };
+
+            if (navigator.geolocation) {
+
+                boton.addEventListener('click', function () {
+                    watchId = navigator.geolocation.watchPosition(function (position) {
+                        var lat = position.coords.latitude;
+                        var lng = position.coords.longitude;
+
+                        console.log(position);
+
+                        var coordenadas = lat + ',' + lng;
+
+                        var exactitud = position.coords.accuracy ? position.coords.accuracy : 'no disponible';
+                        var altitud = position.coords.altitude ? position.coords.altitude : 'no disponible';
+                        var velocidad = position.coords.speed ? position.coords.speed : 'no disponible';
+                        var fechayhora = (new Date(position.timestamp)).toString();
+
+
+                        const html = `
+                            <p>Coordenadas: ${ coordenadas}</p>
+                            <p>Exactitud: ${ exactitud}</p>
+                            <p>Altitud: ${ altitud}</p>
+                            <p>Velocidad: ${ velocidad}</p>
+                            <p>Fecha y hora: ${ fechayhora}</p>
+                        `;
+
+                        const datos = document.getElementById('datos');
+                        datos.innerHTML = html;
+
+                        marker.setPosition(new google.maps.LatLng(lat, lng));
+                        map.panTo(new google.maps.LatLng(lat, lng));
+
+                    }, error, positionOptions);
+                });
+
+                const botondetener = document.getElementById('botondetener');
+
+                botondetener.addEventListener('click', function(){
+
+                    if(watchId !== null){
+                        navigator.geolocation.clearWatch(watchId);
+
+                        const html = `
+                            <p>Se detuvo el monitoreo</p>
+                        `;
+
+                        const datos = document.getElementById('datos');
+                        datos.innerHTML = html;
+
+                    }
+                });
+
+            }
+        }
+
+        function error(positioError) {
+            console.log(positioError.messsage);
+        }
+
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=initMap"
+        async defer></script>
+</body>
+
+</html>
