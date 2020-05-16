@@ -29,9 +29,13 @@ auth.onAuthStateChanged( user => {
         photoUrl = user.photoURL;
         emailVerified = user.emailVerified;
         uid = user.uid;
+
+        background.style.display = 'none';
+
         
     }else {
-        obtieneAmigos([]);
+        //obtieneAmigos([]);
+        background.style.display = 'block';
         configurarMenu(user);
     }
 });

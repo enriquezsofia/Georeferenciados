@@ -18,18 +18,15 @@ const configurarMenu = (user) => {
         });
         listaLoggedIn.forEach( item => item.style.display = 'block');
         listaLoggedOut.forEach( item => item.style.display = 'none');
-        background.style.display = 'block';
 
     }else {
         datosMiCuenta.innerHTML = '';
         listaLoggedIn.forEach( item => item.style.display = 'none');
         listaLoggedOut.forEach( item => item.style.display = 'block');
-        background.style.display = 'none';
     }
 };
 
 const obtieneAmigos = (data) => {
-    background.style.display = 'none';
     var map = new google.maps.Map(document.getElementById("map"), 
     { center: { lat: 48.8722344, lng: 2.7758079 }, zoom: 14 });
 
