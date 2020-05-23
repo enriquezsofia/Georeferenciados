@@ -92,7 +92,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNoControl"
                                     aria-expanded="false" aria-controls="collapseNoControl">
-                                    Mapa sin controles
+                                    Regresa al centro
                                 </button>
                             </h5>
                         </div>
@@ -107,7 +107,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse"
                                     data-target="#collapseNoZoom" aria-expanded="false" aria-controls="collapseNoZoom">
-                                    Mapa con zoom desactivado
+                                    Obtiene nivel de Zoom
                                 </button>
                             </h5>
                         </div>
@@ -128,7 +128,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseControlOptions"
                                     aria-expanded="true" aria-controls="collapseControlOptions">
-                                    Mapa con ControlOptions
+                                    Coloca marcador y mueve al centro
                                 </button>
                             </h5>
                         </div>
@@ -145,7 +145,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseControlPosition"
                                     aria-expanded="false" aria-controls="collapseControlPosition">
-                                    Mapa con ControlPosition
+                                    Obtiene coordenadas con mapsMouseEvent
                                 </button>
                             </h5>
                         </div>
@@ -160,7 +160,8 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapseMapBounds"
                                     data-target="#collapseThree" aria-expanded="false" aria-controls="collapseMapBounds">
-                                   Mapa con Restricting MapBounds
+                                    addDomListener
+                                    <button class="btn btn-secondary" id="btnCentrar">Centrar</button>
                                 </button>
                             </h5>
                         </div>
@@ -201,18 +202,76 @@
 
             // MAPA 2
             var map2 = new google.maps.Map(document.getElementById("map2"), propiedades2);
+            var marker2 = new google.maps.Marker({
+                position: coordenadas,
+                map: map2
+            });
+
+            map2.addListener('center_changed', function(){
+                window.setTimeout( function(){
+                    map2.panTo(marker2.getPosition());
+                },3000);
+            });
 
             // MAPA 3
             var map3 = new google.maps.Map(document.getElementById("map3"), propiedades3);
 
+            var infoWindow = new google.maps.InfoWindow({
+                content: 'Cambia el zoom',
+                position: coordenadas
+            });
+
+            infoWindow.open(map3);
+
+            map3.addListener('zoom_changed', function(){
+                infoWindow.setContent('Zoom' + map3.getZoom());
+            });
+
             // MAPA 4
             var map4 = new google.maps.Map(document.getElementById("map4"), propiedades4);
+
+            map4.addListener('click', function(e){
+                console.log(e.latLng);
+                establecerMarcador(e.latLng);
+            });
+
+            function establecerMarcador(latLng){
+                var marker3 = new google.maps.Marker({
+                    position:coordenadas,
+                    map:map4
+                });
+
+                map4.panTo(latLng);
+            }
 
             // MAPA 5
             var map5 = new google.maps.Map(document.getElementById("map5"), propiedades5);
 
+            var infoWindow2 = new google.maps.InfoWindow({
+                content: 'Haz click para obtener las coordenadas',
+                position: coordenadas
+            });
+
+            infoWindow2.open(map5);
+            map5.addListener('click', function(e){
+                infoWindow2.close();
+                infoWindow2 = new google.maps.InfoWindow({ position: e.latLng });
+                infoWindow2.setContent(e.latLng.toString());
+                infoWindow2.open(map5);
+
+            });
+
             // MAPA 6
             var map6 = new google.maps.Map(document.getElementById("map6"), propiedades6);
+
+            google.maps.event.addDomListener(map6, 'click', function(){
+                window.alert('Se hizo zoom en el mapa');
+            });
+
+            var boton = document.getElementById('btnCentrar');
+            google.maps.event.addDomListener(boton, 'click', function(){
+                map6.panTo(coordenadas);
+            });
         }
 
 
