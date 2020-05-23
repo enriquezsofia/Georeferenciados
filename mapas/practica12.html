@@ -201,7 +201,7 @@
             });
 
             // MAPA 2
-            var map2 = new google.maps.Map(document.getElementById("map2"), propiedades2);
+            var map2 = new google.maps.Map(document.getElementById("map2"), propiedades);
             var marker2 = new google.maps.Marker({
                 position: coordenadas,
                 map: map2
@@ -214,7 +214,7 @@
             });
 
             // MAPA 3
-            var map3 = new google.maps.Map(document.getElementById("map3"), propiedades3);
+            var map3 = new google.maps.Map(document.getElementById("map3"), propiedades);
 
             var infoWindow = new google.maps.InfoWindow({
                 content: 'Cambia el zoom',
@@ -228,7 +228,7 @@
             });
 
             // MAPA 4
-            var map4 = new google.maps.Map(document.getElementById("map4"), propiedades4);
+            var map4 = new google.maps.Map(document.getElementById("map4"), propiedades);
 
             map4.addListener('click', function(e){
                 console.log(e.latLng);
@@ -245,7 +245,7 @@
             }
 
             // MAPA 5
-            var map5 = new google.maps.Map(document.getElementById("map5"), propiedades5);
+            var map5 = new google.maps.Map(document.getElementById("map5"), propiedades);
 
             var infoWindow2 = new google.maps.InfoWindow({
                 content: 'Haz click para obtener las coordenadas',
@@ -262,7 +262,7 @@
             });
 
             // MAPA 6
-            var map6 = new google.maps.Map(document.getElementById("map6"), propiedades6);
+            var map6 = new google.maps.Map(document.getElementById("map6"), propiedades);
 
             google.maps.event.addDomListener(map6, 'click', function(){
                 window.alert('Se hizo zoom en el mapa');
