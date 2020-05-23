@@ -75,7 +75,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseEstandar"
                                     aria-expanded="true" aria-controls="collapseEstandar">
-                                    Mapa con controler estándar
+                                    Evento Click en mapa
                                 </button>
                             </h5>
                         </div>
@@ -186,17 +186,33 @@
                 zoom: 12
             };
 
+            // MAPA 1
 
-            var mapa = new google.maps.Map(document.getElementById("map"), propiedades);
+            var map1 = new google.maps.Map(document.getElementById("map"), propiedades);
             var marker = new google.maps.Marker({
                 position: coordenadas,
-                map: mapa
+                map: map1
             });
 
             marker.addListener('click', function(){
-                mapa1.setZoom(8);
-                mapa1.setCenter(marker.getPosition());
+                map1.setZoom(8);
+                map1.setCenter(marker.getPosition());
             });
+
+            // MAPA 2
+            var map2 = new google.maps.Map(document.getElementById("map2"), propiedades2);
+
+            // MAPA 3
+            var map3 = new google.maps.Map(document.getElementById("map3"), propiedades3);
+
+            // MAPA 4
+            var map4 = new google.maps.Map(document.getElementById("map4"), propiedades4);
+
+            // MAPA 5
+            var map5 = new google.maps.Map(document.getElementById("map5"), propiedades5);
+
+            // MAPA 6
+            var map6 = new google.maps.Map(document.getElementById("map6"), propiedades6);
         }
 
 
